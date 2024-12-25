@@ -4,6 +4,8 @@ modified directly from:
     2. https://github.com/TheVGLC/TheVGLC/blob/master/PlatformerPathfinding/test_level.py
 '''
 
+from grid_tools import columns_into_rows
+
 from heapq import heappush, heappop
 from config import JUMPS, SOLIDS
 
@@ -102,21 +104,7 @@ def get_percent_completable(src, levelStr):
 
     return furthest_x / maxX
 
-def columns_into_rows(columns):
-    column_length = len(columns[0])
-    rows = ["" for _ in range(column_length)]
 
-    for col in columns:
-        i = column_length - 1
-        j = 0
-
-        while i >= 0:
-            rows[j] = f'{rows[j]}{col[i]}'
-
-            i -= 1
-            j += 1
-
-    return rows
 
 def percent_playable(columns):
     length = len('X-------------')
