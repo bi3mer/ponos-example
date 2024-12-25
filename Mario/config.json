@@ -1,0 +1,9 @@
+{
+  "n": 3,
+  "start-population-size": 500,
+  "iterations": 1000,
+  "elites-per-bin": 4,
+  "start-strand-size": 25,
+  "max-strand-size": 25,
+  "seed": 42
+}
