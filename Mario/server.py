@@ -12,10 +12,8 @@ def config():
 
 @app.route('/completability')
 def completability():
-    lvl = loads(request.args.get('lvl'))
-    print('level:', lvl, type(lvl))
-
-    return percent_playable(lvl)
+    playable = percent_playable(loads(request.args.get('lvl')))
+    return str(playable)
 
 if __name__ == '__main__':
     app.run(debug=True)

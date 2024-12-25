@@ -126,4 +126,4 @@ def percent_playable(columns):
     columns.append('X-------------')
 
     lvl = columns_into_rows(columns)
-    return str(get_percent_completable((1, length-2, -1), lvl))
+    return get_percent_completable((1, length-2, -1), lvl)
