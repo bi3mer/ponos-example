@@ -1,3 +1,4 @@
+from computational_metrics import percent_linearity, percent_leniency
 from grid_tools import rows_into_columns
 from flask import Flask, request
 from json import load, loads
@@ -12,11 +13,6 @@ def config():
     with open('config.json', 'r') as f:
         return load(f)
 
-@app.route('/completability')
-def completability():
-    playable = percent_playable(loads(request.args.get('lvl')))
-    return str(playable)
-
 @app.route('/levels')
 def levels():
     lvls = []
@@ -25,6 +21,21 @@ def levels():
             lvls.append(rows_into_columns(f.readlines()))
 
     return lvls
+
+@app.route('/completability')
+def completability():
+    lvl = loads(request.args.get('lvl'))
+    playable = percent_playable(lvl)
+    return str(playable)
+
+@app.route('/computational-metrics')
+def computational_metrics():
+    lvl = loads(request.args.get('lvl'))
+
+    return {
+        'linearity': percent_linearity(lvl),
+        'leniency': percent_leniency(lvl),
+    }
 
 if __name__ == '__main__':
     app.run(debug=True)
