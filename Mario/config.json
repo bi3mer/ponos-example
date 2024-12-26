@@ -5,6 +5,9 @@
   "elites-per-bin": 4,
   "start-strand-size": 25,
   "max-strand-size": 25,
+  "use-n-gram-operators": true,
+  "gram-elites-min-link-length": 0,
+  "gram-elites-max-link-length": 5,
   "computational-metrics": [
     {
       "name": "linearity",

@@ -22,17 +22,12 @@ def levels():
 
     return lvls
 
-@app.route('/completability')
-def completability():
-    lvl = loads(request.args.get('lvl'))
-    playable = percent_playable(lvl)
-    return str(playable)
-
-@app.route('/computational-metrics')
-def computational_metrics():
+@app.route('/assess-level')
+def assess_leverl():
     lvl = loads(request.args.get('lvl'))
 
     return {
+        'completability': percent_playable(lvl),
         'linearity': percent_linearity(lvl),
         'leniency': percent_leniency(lvl),
     }
