@@ -1,7 +1,8 @@
 {
+  "death-reward": -1,
   "n": 3,
-  "start-population-size": 10,
-  "iterations": 10,
+  "start-population-size": 500,
+  "iterations": 500,
   "elites-per-bin": 4,
   "start-strand-size": 25,
   "max-strand-size": 25,
