@@ -2,6 +2,7 @@ from computational_metrics import percent_linearity, percent_leniency
 from grid_tools import rows_into_columns
 from flask import Flask, request
 from json import load, loads
+import logging
 import os
 
 from summerville_agent import percent_playable
@@ -24,8 +25,7 @@ def levels():
 
 @app.route('/assess-level')
 def assess_leverl():
-    lvl = loads(request.args.get('lvl'))
-
+    lvl = loads(loads(request.args.get('lvl').replace('%20', ' ')))
     return {
         'completability': percent_playable(lvl),
         'linearity': percent_linearity(lvl),
@@ -33,4 +33,9 @@ def assess_leverl():
     }
 
 if __name__ == '__main__':
+    # disable logging
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.ERROR)
+
+    # start flask server
     app.run(debug=True, port=5000)
