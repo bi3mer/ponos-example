@@ -8,6 +8,8 @@ def heights(column):
 
     return heights
 
+    # return[h for h in reversed(range(len(column))) if column[h] in config.SOLIDS]
+
 def max_height(column):
     '''
     -1 means that there is no solid found.
@@ -61,6 +63,7 @@ def column_to_leniency_score(column):
         score += 0.5
 
     return score
+
 def get_slope_and_intercept(x, y):
     sum_x = 0
     sum_y = 0
@@ -117,9 +120,6 @@ def linearity_with_heights(heights):
 def linearity(level):
     return linearity_with_heights([min_height(col) for col in level])
 
-def percent_linearity(level):
-    return linearity(level) / max_linearity(len(level), len(level[0]))
-
 def max_linearity(level_size, level_height):
     expected = level_height / 2
     h = 0
@@ -134,6 +134,9 @@ def max_linearity(level_size, level_height):
             h = 0
 
     return score
+
+def percent_linearity(level):
+    return linearity(level) / max_linearity(len(level), len(level[0]))
 
 def percent_leniency(level):
     score = 0
