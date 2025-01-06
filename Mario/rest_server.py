@@ -23,7 +23,7 @@ def levels():
 
     return lvls
 
-@app.route('/assess-level')
+@app.route('/assess')
 def assess_leverl():
     lvl = loads(loads(request.args.get('lvl').replace('%20', ' ')))
     return {
