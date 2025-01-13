@@ -2,8 +2,7 @@ from computational_metrics import percent_linearity, percent_leniency
 from summerville_agent import percent_playable
 from grid_tools import rows_into_columns
 
-from json import load, loads, dumps
-import logging
+from json import loads, dumps
 import socket
 import os
 
