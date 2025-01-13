@@ -29,7 +29,7 @@ def server(host='localhost', port=8000):
                         lvls = []
                         for file_name in os.listdir('levels'):
                             with open(os.path.join('levels', file_name), 'r') as f:
-                                lvls.append(rows_into_columns(f.readlines()))
+                                lvls.append(f.readlines())
 
                         conn.sendall((dumps(lvls)+'EOF').encode())
                     elif cmd[:6] == b'assess':

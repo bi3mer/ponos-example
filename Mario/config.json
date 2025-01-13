@@ -1,6 +1,7 @@
 {
   "death-reward": -1,
   "n": 3,
+  "levels-are-horizontal": true,
   "start-population-size": 500,
   "iterations": 1000,
   "elites-per-bin": 4,
