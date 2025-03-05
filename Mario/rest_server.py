@@ -24,7 +24,7 @@ def levels():
     return lvls
 
 @app.route('/assess')
-def assess_leverl():
+def assess_level():
     lvl = loads(loads(request.args.get('lvl').replace('%20', ' ')))
     return {
         'completability': percent_playable(lvl),
