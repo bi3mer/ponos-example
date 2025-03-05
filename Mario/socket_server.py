@@ -5,6 +5,8 @@ from grid_tools import rows_into_columns
 from json import loads, dumps
 import socket
 import os
+import traceback
+import sys
 
 def server(host='localhost', port=8000):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -42,12 +44,18 @@ def server(host='localhost', port=8000):
                             }
 
                             conn.sendall(dumps(return_data).encode('utf-8'))
+                        elif cmd[:6] == b'reward':
+                            lvl = loads(cmd[6:].decode('utf-8'))
+                            return_data = {'reward': percent_leniency(lvl) }
+
+                            conn.sendall(dumps(return_data).encode('utf-8'))
                         else:
                             print(f'Unrecognized command: {cmd}')
                             error_message = bytes(f'Unrecognized command: {cmd}', 'utf-8')
                             conn.sendall(error_message)
         except Exception as e:
             print(f"An error occurred: {e}")
+            traceback.print_exc(file=sys.stdout)
             s.close()
 
 if __name__ == "__main__":

@@ -19,7 +19,7 @@ def levels():
     lvls = []
     for file_name in os.listdir('levels'):
         with open(os.path.join('levels', file_name), 'r') as f:
-            lvls.append(rows_into_columns(f.readlines()))
+            lvls.append(f.readlines())
 
     return lvls
 
@@ -32,10 +32,15 @@ def assess_level():
         'leniency': percent_leniency(lvl),
     }
 
+@app.route('/reward')
+def reward():
+    lvl = loads(loads(request.args.get('lvl').replace('%20', ' ')))
+    return {'reward': percent_leniency(lvl) }
+
 if __name__ == '__main__':
     # disable logging
     log = logging.getLogger('werkzeug')
     log.setLevel(logging.ERROR)
 
     # start flask server
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=8000)
